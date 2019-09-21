@@ -12,6 +12,14 @@ class Solution:
     def twoSum(self, nums, target):
         hash_map = {}
         for idx, num in enumerate(nums):
-            if target - num in hash_map:
-                return [idx, hash_map[target-num]]
-            hash_map[target-num] = idx
+            another_num = target - num
+            if another_num in hash_map:
+                return [hash_map[another_num], idx]
+            hash_map[num] = idx
+        return None
+
+
+if __name__ == '__main__':
+    s = Solution()
+    res = s.twoSum([1, 9, 2, 3], 10)
+    print(res)
