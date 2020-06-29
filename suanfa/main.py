@@ -111,6 +111,32 @@ def plot_distance():
     # plt.show()
 
 
+def coordinate_init(size):
+    # 产生坐标字典 并把字典进行保存 顶点序号,x,y
+    coordinate_dict = {}
+    with open('{}_city.txt'.format(size), 'w') as f:
+        coordinate_dict[0] = (-size, 0)  # 起点是（-size，0）
+        f.write(str(0) + ',' + str(-size) + ',' + str(0) + '\n')
+        up = 1
+        for i in range(1, size + 1):  # 顺序标号随机坐标
+            x = np.random.uniform(-size, size)
+            if np.random.randint(0, 2) == up:
+                y = np.sqrt(size ** 2 - x ** 2)
+            else:
+                y = -np.sqrt(size ** 2 - x ** 2)
+            coordinate_dict[i] = (x, y)
+            f.write(str(i) + ',' + str(x) + ',' + str(y) + '\n')
+        coordinate_dict[size + 1] = (-size, 0)  # 终点是（-size,0),构成一个圆
+        f.write(str(size + 1) + ',' + str(-size) + ',' + str(0) + '\n')
+
+    return coordinate_dict
+
+
 if __name__ == '__main__':
+    coordinate_dict = coordinate_init(5)
+    coordinate_dict = coordinate_init(10)
+    coordinate_dict = coordinate_init(20)
+    coordinate_dict = coordinate_init(30)
+    coordinate_dict = coordinate_init(50)
     plot_distance()
 
