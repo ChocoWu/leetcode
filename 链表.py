@@ -30,6 +30,9 @@ class Node:
             node.next = item
             self.length += 1
 
+    def create(self, data):
+        pass
+
     def delete(self, index):
         if self.isEmpty():
             print("this chain table is empty")
